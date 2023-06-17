@@ -21,7 +21,7 @@ const NewsCard = () => {
         <LayoutBtns title={"Правый"} />
         <Controls />
       </Head>
-      <News />
+      <News list={newsData}/>
     </>
   );
 };
