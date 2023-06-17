@@ -1,0 +1,35 @@
+.Controls-nav {
+  cursor: pointer;
+}
+
+.Controls-nav ul {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  padding-left: 25px;
+}
+
+.Controls-nav ul li {
+  padding: 0px 5px;
+}
+.Controls-nav ul li img {
+  width: 20px;
+  height: 20px;
+}
+
+.Controls-icon-empty,
+.Controls-icon-full {
+  width: 22px;
+  height: 22px;
+  margin-bottom: 5px;
+}
+.Controls-icon-full {
+  color: #0088ee;
+}
+.Controls-icon-empty {
+  color: #cdcdcd;
+}
+.Controls-list {
+  display: flex;
+  align-items: center;
+}

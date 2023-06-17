@@ -1,0 +1,44 @@
+.LayoutBtn-container :hover {
+  cursor: pointer;
+}
+.LayoutBtn-category {
+  margin: 4px;
+  background-color: #fff;
+  border-radius: 2px;
+  border: 1px solid #0c8ce9;
+  overflow: hidden;
+  width: 64px;
+  height: 28px;
+}
+
+.LayoutBtn-category label {
+  line-height: 3em;
+  width: 8em;
+  height: 2em;
+  display: flex;
+  align-items: center;
+}
+
+.LayoutBtn-category span {
+  text-align: center;
+  padding: 3px 0;
+  color: #0088ee;
+  width: 100%;
+  font-size: 0.8em;
+  width: 64px;
+}
+
+.LayoutBtn-category label input {
+  position: absolute;
+  display: none;
+  color: #fff !important;
+}
+
+.LayoutBtn-category input:checked + span {
+  color: #ffffff;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+}
+
+.LayoutBtn-category.action input:checked + span {
+  background-color: #0c8ce9;
+}
