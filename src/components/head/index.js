@@ -4,8 +4,7 @@ import { memo } from "react";
 import { cn as bem } from "@bem-react/classname";
 import "./style.css";
 
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faArrowRightToBracket } from '@fortawesome/free-solid-svg-icons'
+
 
 
 const Head = ({ children }) => {

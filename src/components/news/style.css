@@ -1,11 +1,22 @@
 .News-head {
   display: flex;
-}
 
+}
+.News-head-wrapper {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: baseline; */
+}
+.News-head-place {
+  display: flex;
+
+  align-items: flex-start;
+}
 .News-head div {
   padding-left: 10px;
   color: #808080;
   font-size: 16px;
+  width:180px
 }
 .News-content {
   display: flex;
@@ -17,14 +28,7 @@
   margin: 0px 0px 0px 10px;
   font-size: 16px;
   color: #333333;
-  /* max-height: 65px;
-  overflow: hidden; */
-  /* letter: -3.5% */
 
-  /* white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100%; */
 }
 .News-content span {
   color: #808080;

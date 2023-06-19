@@ -15,13 +15,16 @@ const NewsCard = () => {
     console.log( newsData);
   return (
     <>
+      <News list={newsData}>
       <Head>
         <LayoutBtns title={"Левый"} />
         <LayoutBtns title={"Центр"} />
         <LayoutBtns title={"Правый"} />
         <Controls />
       </Head>
-      <News list={newsData}/>
+
+
+      </News>
     </>
   );
 };

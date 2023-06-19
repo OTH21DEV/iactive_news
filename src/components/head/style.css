@@ -1,5 +1,5 @@
 .Head-place{
     display:flex;
-    align-items: center;
+    /* align-items: center; */
     justify-content: flex-end;
 }

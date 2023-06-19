@@ -4,13 +4,17 @@ import { formatTime } from "../../utils/formatTime";
 import user from "../../assets/user.svg";
 import { cn as bem } from "@bem-react/classname";
 import "./style.css";
+import Head from "../../components/head";
+import Controls from "../../components/controls";
+import LayoutBtns from "../../components/layout-btn";
 
-function News({ list }) {
+
+function News({ list,children }) {
   const cn = bem("News");
   const [expandedItems, setExpandedItems] = useState([]);
 
   function handleExpand(index) {
-    setExpandedItems(prevState => {
+    setExpandedItems((prevState) => {
       const newState = [...prevState];
       newState[index] = true;
       return newState;
@@ -26,19 +30,22 @@ function News({ list }) {
 
         return (
           <div key={index}>
+            <div className={cn("head-wrapper")}>
             <div className={cn("head")}>
               <img src={user} alt="User avatar" />
               <div>{item.author}</div>
+            </div>
+            <div className={cn("head-place")}>{children}</div>
             </div>
             <div className={cn("content")}>
               <span>{formatTime(item.date)}</span>
               <p className={cn("content-text")}>{expandedItems[index] ? item.content : shortContent}</p>
             </div>
-              {contentOverMaxLength && !expandedItems[index] && (
-                <p className={cn("content-expand")} onClick={() => handleExpand(index)}>
-                  Далее
-                </p>
-              )}
+            {contentOverMaxLength && !expandedItems[index] && (
+              <p className={cn("content-expand")} onClick={() => handleExpand(index)}>
+                Далее
+              </p>
+            )}
 
             <div className={cn("media")}>
               {item.attachments && (item.attachments[0]?.url.split(".")?.at(-1) === "jpeg" || item.attachments[0]?.url.split(".")?.at(-1) === "jpg") && (
