@@ -8,12 +8,21 @@ import NewsState from "../../store/news";
 import NewsCard from "../../containers/news-card";
 import { NewsProvider } from "../../providers/newsProvider/provider";
 
+import NewsFilter from "../../containers/news-filter";
+import store from "../../store-redux/store";
+  import { Provider } from "react-redux";
+
 const News = () => {
   return (
     <PageLayout>
+      <Provider store={store}>
       <NewsProvider>
+    
+        <NewsFilter/>
         <NewsCard />
+ 
       </NewsProvider>
+      </Provider>
     </PageLayout>
   );
 };

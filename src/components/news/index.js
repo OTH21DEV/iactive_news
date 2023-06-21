@@ -29,7 +29,7 @@ function News({ list,children }) {
         const shortContent = contentOverMaxLength ? `${item.content.slice(0, maxLength)}...` : item.content;
 
         return (
-          <div key={index}>
+          <div className={cn()}key={index}>
             <div className={cn("head-wrapper")}>
             <div className={cn("head")}>
               <img src={user} alt="User avatar" />

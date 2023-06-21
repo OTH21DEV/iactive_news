@@ -40,6 +40,26 @@ class NewsState {
       this.state = newState;
     }
   }
+
+  sortByNew() {
+    const messages = this.getState().data;
+    const sortedMessages = messages?.sort((a, b) => new Date(b.date) - new Date(a.date));
+    const newState = {
+      ...this.getState(),
+      data: sortedMessages,
+    };
+    this.state = newState;
+  }
+
+  sortByOld() {
+    const messages = this.getState().data;
+    const sortedMessages = messages?.sort((a, b) => new Date(a.date) - new Date(b.date));
+    const newState = {
+      ...this.getState(),
+      data: sortedMessages,
+    };
+    this.state = newState;
+  }
 }
 
 export default NewsState;

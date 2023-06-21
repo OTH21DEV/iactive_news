@@ -4,6 +4,7 @@ import { createContext, useContext, useState, useEffect } from "react";
 
 const NewsContext = createContext();
 
+
 export function useNews() {
   return useContext(NewsContext);
 }

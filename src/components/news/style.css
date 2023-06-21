@@ -2,6 +2,10 @@
   display: flex;
 
 }
+
+.News{
+  padding:10px 0px
+}
 .News-head-wrapper {
   display: flex;
   justify-content: space-between;
@@ -33,15 +37,28 @@
 .News-content span {
   color: #808080;
   font-size: 14px;
+  padding:5px 5px 0px 5px
 }
 .News-media video,
 .News-media img {
-  width: 320px;
-  height: 240px;
+  width: 280px;
+  height: 158px;
+border-radius: 4px;
+/* padding:0 !important; */
+/* position:absolute;
+bottom:0;
+top:0;
+left:0; */
+
 }
 
+.News-media  {
+padding: 20px 0px 0px 56px;
+}
+
+
 .News-content-expand {
-  padding: 10px 0px 0px 46px;
+  padding: 10px 0px 0px 56px;
   margin: 0;
   color: #808080;
   font-size: 12px;
