@@ -89,7 +89,7 @@ class NewsState {
         };
         this.setState(newState);
 
-        console.log("New data loaded:", json.Messages);
+        // console.log("New data loaded:", json.Messages);
       } else {
         console.log("No new data available");
       }

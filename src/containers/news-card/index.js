@@ -24,7 +24,7 @@ const NewsCard = () => {
           <LayoutBtns title={"Левый"} />
           <LayoutBtns title={"Центр"} />
           <LayoutBtns title={"Правый"} />
-          <Controls />
+          {/* <Controls /> */}
         </Head>
       </News>
     </>
