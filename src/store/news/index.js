@@ -1,13 +1,31 @@
-// import { React, Component,memo } from "react";
-import React, { Component } from "react";
+
 
 class NewsState {
   constructor(initState = {}) {
     this.state = initState;
+    this.observers = [];
+    this.timerId = null;
   }
 
   getState() {
     return this.state;
+  }
+
+  setState(newState) {
+    this.state = newState;
+    this.notifyObservers();
+  }
+
+  addObserver(observer) {
+    this.observers.push(observer);
+  }
+
+  removeObserver(observer) {
+    this.observers = this.observers.filter((o) => o !== observer);
+  }
+
+  notifyObservers() {
+    this.observers.forEach((observer) => observer());
   }
 
   async load() {
@@ -20,7 +38,7 @@ class NewsState {
         body: formData,
       };
 
-      const response = await fetch(`http://a0830433.xsph.ru/?messageId=0`, requestOptions);
+      const response = await fetch(`http://a0830433.xsph.ru/?messageCount=20`, requestOptions);
       const json = await response.json();
 
       // Update the state with fetched data
@@ -29,7 +47,7 @@ class NewsState {
         data: json.Messages,
       };
 
-      this.state = newState;
+      this.setState(newState);
     } catch (e) {
       console.log(e);
       // If there was an error, update the state accordingly
@@ -37,28 +55,52 @@ class NewsState {
         ...this.getState(),
         data: [],
       };
-      this.state = newState;
+      this.setState(newState);
+    }
+
+    // Start the timer to check for new data
+    this.timerId = setInterval(() => {
+      this.checkForNewData();
+    }, 5000);
+  }
+
+  async checkForNewData() {
+    let formData = new FormData();
+    formData.append("actionName", "MessagesLoad");
+    formData.append("messageId", "2698");
+
+    try {
+      let requestOptions = {
+        method: "POST",
+        body: formData,
+      };
+
+      const response = await fetch(`http://a0830433.xsph.ru/?messageId=2698&messageCount=20`, requestOptions);
+      const json = await response.json();
+
+      if (json.Messages) {
+        // There is new data available, update the state
+        //get the last 20 messages from the existing state's data array and then
+        //concatenated them with the new messages received in the response.
+        const newState = {
+          ...this.getState(),
+          data: [...this.getState().data.slice(-20), ...json.Messages],
+          // LastMessageId: json.LastMessageId,
+        };
+        this.setState(newState);
+
+        console.log("New data loaded:", json.Messages);
+      } else {
+        console.log("No new data available");
+      }
+    } catch (e) {
+      console.log(e);
+      console.log("Error checking for new data");
     }
   }
 
-  sortByNew() {
-    const messages = this.getState().data;
-    const sortedMessages = messages?.sort((a, b) => new Date(b.date) - new Date(a.date));
-    const newState = {
-      ...this.getState(),
-      data: sortedMessages,
-    };
-    this.state = newState;
-  }
-
-  sortByOld() {
-    const messages = this.getState().data;
-    const sortedMessages = messages?.sort((a, b) => new Date(a.date) - new Date(b.date));
-    const newState = {
-      ...this.getState(),
-      data: sortedMessages,
-    };
-    this.state = newState;
+  stopTimer() {
+    clearInterval(this.timerId);
   }
 }
 
