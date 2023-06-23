@@ -1,4 +1,4 @@
-
+import { v4 as uuidv4 } from "uuid";
 
 class NewsState {
   constructor(initState = {}) {
@@ -41,10 +41,20 @@ class NewsState {
       const response = await fetch(`http://a0830433.xsph.ru/?messageCount=20`, requestOptions);
       const json = await response.json();
 
+
+      // test 
+
+      const dataWithId = json.Messages.map((item, index) => ({
+        ...item,
+        uuid: uuidv4(), // You can change this logic according to your requirements
+      }));
+
+
       // Update the state with fetched data
       const newState = {
         ...this.getState(),
-        data: json.Messages,
+        // data: json.Messages,
+        data: dataWithId,
       };
 
       this.setState(newState);
@@ -59,9 +69,10 @@ class NewsState {
     }
 
     // Start the timer to check for new data
-    this.timerId = setInterval(() => {
-      this.checkForNewData();
-    }, 5000);
+    
+    // this.timerId = setInterval(() => {
+    //   this.checkForNewData();
+    // }, 5000);
   }
 
   async checkForNewData() {
@@ -78,19 +89,45 @@ class NewsState {
       const response = await fetch(`http://a0830433.xsph.ru/?messageId=2698&messageCount=20`, requestOptions);
       const json = await response.json();
 
-      if (json.Messages) {
+//test
+
+const dataWithId = json.Messages?.map((item, index) => ({
+  ...item,
+  uuid: uuidv4(), // You can change this logic according to your requirements
+}));
+
+
+      // if (json.Messages) {
+      //   // There is new data available, update the state
+      //   //get the last 20 messages from the existing state's data array and then
+      //   //concatenated them with the new messages received in the response.
+      //   const newState = {
+      //     ...this.getState(),
+      //     data: [...this.getState().data.slice(-20), ...json.Messages],
+  
+      //   };
+      //   this.setState(newState);
+
+      //   console.log("New data loaded:", json.Messages);
+      // } 
+      
+      if ( dataWithId) {
         // There is new data available, update the state
         //get the last 20 messages from the existing state's data array and then
         //concatenated them with the new messages received in the response.
         const newState = {
           ...this.getState(),
-          data: [...this.getState().data.slice(-20), ...json.Messages],
-          // LastMessageId: json.LastMessageId,
+          data: [...this.getState().data.slice(-20), ...dataWithId],
+  
         };
         this.setState(newState);
 
-        // console.log("New data loaded:", json.Messages);
-      } else {
+        console.log("New data loaded:",  dataWithId);
+      } 
+      
+      
+      
+      else {
         console.log("No new data available");
       }
     } catch (e) {

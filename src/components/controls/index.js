@@ -12,7 +12,7 @@ import { faStar } from "@fortawesome/free-regular-svg-icons";
 import { faStar as full } from "@fortawesome/free-solid-svg-icons";
 import { useSelector, useDispatch } from "react-redux";
 // import { setFavoriteNews } from "../../store-redux/favorite/action";
-
+import { setListIdNews } from "../../store-redux/favoriteId/action";
 
 const Controls = ({ id, addToFavorite }) => {
 
@@ -20,7 +20,9 @@ const Controls = ({ id, addToFavorite }) => {
   // const dispatch = useDispatch();
 console.log(state.data)
 console.log(id)
+const stateListId= useSelector((state) => state.favoriteId);
 
+  console.log(stateListId);
 
 // console.log(state.data.includes(`${id}`))
 // console.log(typeof(id))
@@ -38,7 +40,7 @@ console.log(id)
   // };
 
 
-  
+
   const cn = bem("Controls");
   return (
     <nav className={cn("nav")}>
@@ -61,12 +63,14 @@ console.log(id)
             <FontAwesomeIcon icon={faStar} className={cn("icon-empty")} />
           )} */}
 
-       {state.data?.includes(`${id}`) ? (
+       {/* { 
+       
+      isFavorite(id)? (
     
             <FontAwesomeIcon icon={full} style={{ color: "#0088ee" }} className={cn("icon-full")} />
           ) : (
             <FontAwesomeIcon icon={faStar} className={cn("icon-empty")} />
-          )}
+          )} */}
 
 
         </li>
