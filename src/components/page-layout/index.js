@@ -4,9 +4,7 @@ import { cn as bem } from "@bem-react/classname";
 import "./style.css";
 
 const PageLayout = ({ children }) => {
-    
   const cn = bem("PageLayout");
-
   return <div className={cn()}>{children}</div>;
 };
 

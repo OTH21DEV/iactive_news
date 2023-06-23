@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext} from "react";
 
 // Create a NewsContext to hold the state
 

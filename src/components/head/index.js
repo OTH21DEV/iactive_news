@@ -4,13 +4,9 @@ import { memo } from "react";
 import { cn as bem } from "@bem-react/classname";
 import "./style.css";
 
-
-
-
 const Head = ({ children }) => {
   const cn = bem("Head");
-
-  return <div className={cn('place')}>{children}</div>;
+  return <div className={cn("place")}>{children}</div>;
 };
 
 export default memo(Head);

@@ -9,7 +9,6 @@ const setFavorite = (data) => {
 
 export const setFavoriteNews = (data) => {
   return (dispatch) => {
-
     dispatch(setFavorite(data));
   };
 };

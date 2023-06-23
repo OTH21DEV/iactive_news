@@ -1,7 +1,6 @@
-import { useState, useEffect,useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import NewsState from "../../store/news";
 import NewsContext from "../../context/newsContext/context";
-
 
 export function NewsProvider({ children }) {
   const [newsData, setNewsData] = useState([]);

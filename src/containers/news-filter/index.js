@@ -1,11 +1,7 @@
-import { memo, useState, useMemo, useEffect, useCallback } from "react";
-import PropTypes from "prop-types";
+import { memo, useState, useMemo } from "react";
+// import PropTypes from "prop-types";
 import { cn as bem } from "@bem-react/classname";
 import Select from "../../components/select";
-// import "./style.css";
-
-import { useNews } from "../../context/newsContext/context";
-import NewsState from "../../store/news";
 
 const NewsFilter = () => {
   const [selectedOption, setSelectedOption] = useState("");
@@ -30,11 +26,11 @@ const NewsFilter = () => {
       []
     ),
   };
-
+// Update the state with the selected value
   const handleSelect = (value) => {
-    setSelectedOption(value); // Update the state with the selected value
+    setSelectedOption(value); 
   };
-  return <Select options={options.sort} value={selectedOption} onSelect={handleSelect}  ></Select>;
+  return <Select options={options.sort} value={selectedOption} onSelect={handleSelect}></Select>;
 };
 
 export default memo(NewsFilter);

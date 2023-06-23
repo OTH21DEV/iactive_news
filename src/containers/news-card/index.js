@@ -1,30 +1,28 @@
-import React, { useEffect, memo, useState, useContext } from "react";
-import Head from "../../components/head";
-import Controls from "../../components/controls";
-import LayoutBtns from "../../components/layout-btn";
-
-import News from "../../components/news";
+import React, { memo } from "react";
 import { useNews } from "../../context/newsContext/context";
-import NewsState from "../../store/news";
-// import selectState from "../../store/select";
-// import SelectContext from "../../context/selectContext/context"
-
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { sortByNew, sortByOld } from "../../utils/filterList";
+import Head from "../../components/head";
+import LayoutBtns from "../../components/layout-btn";
+import News from "../../components/news";
 
 const NewsCard = () => {
+  //Initial news from context
   const { newsData } = useNews();
-
-  const state = useSelector((state) => state.select);
+  //State from redux-store for select and list of favorite news
+  const stateSelect = useSelector((state) => state.select);
+  const stateFavoriteNews = useSelector((state) => state.favorite);
+  const pathName = window.location.pathname.split("/")[1];
 
   return (
     <>
-      <News list={state.value === "newest" ? sortByNew(newsData) : sortByOld(newsData)}>
+      {/* Render the list depending on pathName :all items for news page and favorite news in favorite page*/}
+      <News list={stateSelect.value === "newest" ? sortByNew(pathName !== "favorite" ? newsData : stateFavoriteNews.data) : sortByOld(pathName !== "favorite" ? newsData : stateFavoriteNews.data)}>
         <Head>
           <LayoutBtns title={"Левый"} />
           <LayoutBtns title={"Центр"} />
           <LayoutBtns title={"Правый"} />
-          {/* <Controls /> */}
+          {/* <Controls stateListId ={stateListId.list}/> */}
         </Head>
       </News>
     </>

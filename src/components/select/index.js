@@ -1,27 +1,23 @@
-import { memo, useState, useMemo, useEffect } from "react";
-import PropTypes from "prop-types";
+import { memo } from "react";
 import { cn as bem } from "@bem-react/classname";
-
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setSelect } from "../../store-redux/select/action";
-// import "./style.css";
+// import PropTypes from "prop-types";
+import "./style.css";
 
 import React from "react";
 
-const Select = ({ options, value, onSelect }) => {
-  const state = useSelector((state) => state.select);
+const Select = ({ options, value }) => {
+  const cn = bem("Select");
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const value = e.target.value;
-
     dispatch(setSelect(value));
   };
 
-  console.log(state);
-
   return (
-    <select value={value} onChange={(e) => handleChange(e)}>
+    <select className={cn()} value={value} onChange={(e) => handleChange(e)}>
       {options.map((item) => {
         return (
           <option key={item.value} value={item.value}>

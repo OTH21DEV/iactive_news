@@ -9,7 +9,7 @@ const LayoutBtn = ({ title }) => {
     <div className={cn("container")}>
       <div className={cn("category action")}>
         <label>
-          <input type="checkbox"  />
+          <input type="checkbox" />
           <span>{title}</span>
         </label>
       </div>
